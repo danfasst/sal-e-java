@@ -1,30 +1,18 @@
-import java.util.ArrayList;
+package Estoq;
 
-public class Estoque {
-    private ArrayList<Ingrediente> ingredientes;
+public class Ingrediente extends Entidade {
+    private int quantidade;
 
-    public Estoque() {
-        this.ingredientes = new ArrayList<>();
+    public Ingrediente(int id, String nome, int quantidade) {
+        super(id, nome);
+        this.quantidade = quantidade;
     }
 
-    public void adicionarIngrediente(Ingrediente ingrediente) {
-        ingredientes.add(ingrediente);
+    public int getQuantidade() {
+        return quantidade;
     }
 
-    public void mostrarIngredientes() {
-        for (Ingrediente ingrediente : ingredientes) {
-            System.out.println("ID: " + ingrediente.getID() + ", Nome: " + ingrediente.getNome() + ", Quantidade: " + ingrediente.getQuantidade());
-        }
-    }
-
-    public void adicionarQuantidade(int ingredienteID, int quantidade) {
-        for (Ingrediente ingrediente : ingredientes) {
-            if (ingrediente.getID() == ingredienteID) {
-                ingrediente.setQuantidade(ingrediente.getQuantidade() + quantidade);
-                System.out.println("Quantidade de " + ingrediente.getNome() + " atualizada para " + ingrediente.getQuantidade());
-                return;
-            }
-        }
-        System.out.println("Ingrediente com ID " + ingredienteID + " não encontrado.");
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 }
