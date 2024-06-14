@@ -1,12 +1,8 @@
-import java.util.Scanner;
-
 public class Sistema {
-
-    private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         exibirMenuPrincipal();
-        int opcao = lerOpcao();
+        int opcao = Console.lerInt("Insira uma opção:");
 
         while (opcao != 0) {
             switch (opcao) {
@@ -26,7 +22,6 @@ public class Sistema {
                     System.out.println("Opção inválida. Tente novamente.");
             }
             exibirMenuPrincipal();
-            opcao = lerOpcao();
         }
 
         System.out.println("Saindo do sistema. Até logo!");
@@ -41,11 +36,6 @@ public class Sistema {
         System.out.println("0) Sair");
     }
 
-    private static int lerOpcao() {
-        System.out.print("\nEscolha uma opção: ");
-        return scanner.nextInt();
-    }
-
     private static void menuPedidos() {
         System.out.println("\nMenu de Pedidos");
         System.out.println("1) Fazer Pedido");
@@ -53,7 +43,7 @@ public class Sistema {
         System.out.println("3) Pedidos Concluídos para Entrega");
         System.out.println("0) Voltar");
 
-        int opcao = lerOpcao();
+        int opcao = 0;
 
         switch (opcao) {
             case 1:
@@ -84,7 +74,7 @@ public class Sistema {
         System.out.println("3) Marcar Pedido como Concluído Pelo Id");
         System.out.println("0) Voltar");
 
-        int opcao = lerOpcao();
+        int opcao = 0;
 
         switch (opcao) {
             case 1:
@@ -134,7 +124,7 @@ public class Sistema {
         System.out.println("2) Adicionar ingredientes");
         System.out.println("0) Voltar");
 
-        int opcao = lerOpcao();
+        int opcao = 0;
 
         switch (opcao) {
             case 1:
@@ -168,7 +158,7 @@ public class Sistema {
         System.out.println("4) Editar Reserva");
         System.out.println("0) Voltar");
 
-        int opcao = lerOpcao();
+        int opcao = 0;
 
         switch (opcao) {
             case 1:
