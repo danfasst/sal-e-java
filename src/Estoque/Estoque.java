@@ -1,4 +1,4 @@
-package Estoq;
+package Estoque;
 
 import java.util.ArrayList;
 
@@ -15,15 +15,15 @@ public class Estoque {
 
     public void mostrarIngredientes() {
         for (Ingrediente ingrediente : ingredientes) {
-            System.out.println("ID: " + ingrediente.getID() + ", Nome: " + ingrediente.getNome() + ", Quantidade: " + ingrediente.getQuantidade());
+            System.out.println("ID: " + ingrediente.id + ", Nome: " + ingrediente.nome + ", Quantidade: " + ingrediente.quantidade);
         }
     }
 
     public void adicionarQuantidade(int ingredienteID, int quantidade) {
         for (Ingrediente ingrediente : ingredientes) {
-            if (ingrediente.getID() == ingredienteID) {
-                ingrediente.setQuantidade(ingrediente.getQuantidade() + quantidade);
-                System.out.println("Quantidade de " + ingrediente.getNome() + " atualizada para " + ingrediente.getQuantidade());
+            if (ingrediente.id == ingredienteID) {
+                ingrediente.setQuantidade(ingrediente.quantidade + quantidade);
+                System.out.println("Quantidade de " + ingrediente.nome + " atualizada para " + ingrediente.quantidade);
                 return;
             }
         }
