@@ -1,4 +1,3 @@
-<<<<<<< HEAD:src/Reserva.java
 public class Reserva extends Entidade {
 
     private int quantidadePessoas;
@@ -17,9 +16,3 @@ public class Reserva extends Entidade {
     public String mostrarDados() {
         return "id: " + id + ", Quantidade de Pessoas: " + quantidadePessoas + ", Data da Reserva: " + dataReserva + ", Número da Mesa: " + numeroMesa;
     }
-=======
-package Reserva;
-public class Reserva {
-    
->>>>>>> main:src/Reserva/Reserva.java
-}
