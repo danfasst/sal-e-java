@@ -1,7 +1,7 @@
-package Estoq;
+package Estoque;
 
 public class Ingrediente extends Entidade {
-    private int quantidade;
+    protected int quantidade;
 
     public Ingrediente(int id, String nome, int quantidade) {
         super(id, nome);
