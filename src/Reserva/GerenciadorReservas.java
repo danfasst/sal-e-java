@@ -56,4 +56,8 @@ public abstract class GerenciadorReservas {
         }
         return null;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> main
