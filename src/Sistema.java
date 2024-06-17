@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import Pedidos.Pedido;
+
 public class Sistema {
 
     private static Scanner scanner = new Scanner(System.in);
@@ -73,8 +75,15 @@ public class Sistema {
     }
 
     private static void fazerPedido() {
-        // Implementar lógica para fazer um novo pedido
-        System.out.println("Implementar fazerPedido()");
+        System.out.println("\n-- Fazer Pedido --");
+        System.out.print("Digite o nome do cliente: ");
+        String cliente = scanner.nextLine();
+        System.out.print("Digite a descrição do pedido: ");
+        String descricao = scanner.nextLine();
+
+        Pedido novoPedido = new Pedido(cliente, descricao);
+        gerenciadorPedidos.adicionarPedido(novoPedido);
+        System.out.println("Pedido adicionado com sucesso.");
     }
 
     private static void menuPedidosPendentes() {
@@ -104,28 +113,45 @@ public class Sistema {
     }
 
     private static void mostrarPedidosEmAberto() {
-        // Implementar lógica para mostrar os pedidos em aberto
-        System.out.println("Implementar mostrarPedidosEmAberto()");
+        System.out.println("\n-- Mostrar Pedidos Em Aberto --");
+        gerenciadorPedidos.mostrarPedidosEmAberto();
     }
 
     private static void editarPedido() {
-        // Implementar lógica para editar um pedido pelo ID
-        System.out.println("Implementar editarPedido()");
+        System.out.println("\n-- Editar Pedido Pelo Id --");
+        int idPedido = lerOpcao("Digite o ID do pedido a ser editado:");
+        Pedido pedido = gerenciadorPedidos.buscarPedido(idPedido);
+        if (pedido != null) {
+            System.out.print("Digite a nova descrição do pedido: ");
+            String descricao = scanner.nextLine();
+            pedido.setDescricao(descricao);
+            gerenciadorPedidos.editarPedido(idPedido, pedido);
+            System.out.println("Pedido editado com sucesso.");
+        } else {
+            System.out.println("Pedido não encontrado.");
+        }
     }
 
     private static void marcarPedidoConcluido() {
-        // Implementar lógica para marcar um pedido como concluído pelo ID
-        System.out.println("Implementar marcarPedidoConcluido()");
+        System.out.println("\n-- Marcar Pedido como Concluído pelo Id --");
+        int idPedido = lerOpcao("Digite o ID do pedido a ser marcado como concluído:");
+        Pedido pedido = gerenciadorPedidos.buscarPedido(idPedido);
+        if (pedido != null) {
+            gerenciadorPedidos.marcarPedidoConcluido(idPedido);
+            System.out.println("Pedido marcado como concluído com sucesso.");
+        } else {
+            System.out.println("Pedido não encontrado.");
+        }
     }
 
     private static void mostrarPedidosConcluidos() {
-        // Implementar lógica para mostrar os pedidos concluídos
-        System.out.println("Implementar mostrarPedidosConcluidos()");
+        System.out.println("\n-- Mostrar Pedidos Concluídos --");
+        gerenciadorPedidos.mostrarPedidosConcluidos();
     }
 
     private static void mostrarPratos() {
-        // Implementar lógica para mostrar os pratos cadastrados
-        System.out.println("Implementar mostrarPratos()");
+        System.out.println("\n-- Pratos --");
+        gerenciadorPratos.mostrarPratos();
     }
 
     private static void menuEstoque() {
@@ -151,13 +177,18 @@ public class Sistema {
     }
 
     private static void mostrarIngredientes() {
-        // Implementar lógica para mostrar todos os ingredientes e suas quantidades
-        System.out.println("Implementar mostrarIngredientes()");
+        System.out.println("\n-- Mostrar Ingredientes e Quantidades --");
+        gerenciadorEstoque.mostrarIngredientes();
     }
 
     private static void adicionarQuantidadeIngrediente() {
-        // Implementar lógica para adicionar mais quantidade a um ingrediente
-        System.out.println("Implementar adicionarQuantidadeIngrediente()");
+        System.out.println("\n-- Adicionar Quantidade em um Ingrediente --");
+        System.out.print("Digite o nome do ingrediente: ");
+        String nome = scanner.nextLine();
+        System.out.print("Digite a quantidade a ser adicionada: ");
+        int quantidade = lerOpcaoInteira();
+        gerenciadorEstoque.adicionarQuantidade(nome, quantidade);
+        System.out.println("Quantidade adicionada com sucesso.");
     }
 
     private static void menuReservas() {
@@ -191,22 +222,48 @@ public class Sistema {
     }
 
     private static void mostrarReservas() {
-        // Implementar lógica para mostrar as reservas feitas
-        System.out.println("Implementar mostrarReservas()");
+        System.out.println("\n-- Mostrar Reservas --");
+        gerenciadorReservas.mostrarReservas();
     }
 
     private static void adicionarReserva() {
-        // Implementar lógica para adicionar uma reserva
-        System.out.println("Implementar adicionarReserva()");
+        System.out.println("\n-- Adicionar Reserva --");
+        System.out.print("Digite o nome do cliente: ");
+        String cliente = scanner.nextLine();
+        System.out.print("Digite a data da reserva: ");
+        String data = scanner.nextLine();
+
+        Reserva novaReserva = new Reserva(cliente, data);
+        gerenciadorReservas.adicionarReserva(novaReserva);
+        System.out.println("Reserva adicionada com sucesso.");
     }
 
     private static void excluirReserva() {
-        // Implementar lógica para excluir uma reserva
-        System.out.println("Implementar excluirReserva()");
+        System.out.println("\n-- Excluir Reserva --");
+        int idReserva = lerOpcao("Digite o ID da reserva a ser excluída:");
+        Reserva reserva = gerenciadorReservas.buscarReserva(idReserva);
+        if (reserva != null) {
+            gerenciadorReservas.removerReserva(idReserva);
+            System.out.println("Reserva excluída com sucesso.");
+        } else {
+            System.out.println("Reserva não encontrada.");
+        }
     }
 
     private static void editarReserva() {
-        // Implementar lógica para editar uma reserva
-        System.out.println("Implementar editarReserva()");
+        System.out.println("\n-- Editar Reserva --");
+        int idReserva = lerOpcao("Digite o ID da reserva a ser editada:");
+        Reserva reserva = gerenciadorReservas.buscarReserva(idReserva);
+        if (reserva != null) {
+            System.out.print("Digite o novo nome do cliente: ");
+            String cliente = scanner.nextLine();
+            System.out.print("Digite a nova data da reserva: ");
+            String data = scanner.nextLine();
+            Reserva reservaEditada = new Reserva(cliente, data);
+            gerenciadorReservas.editarReserva(idReserva, reservaEditada);
+            System.out.println("Reserva editada com sucesso.");
+        } else {
+            System.out.println("Reserva não encontrada.");
+        }
     }
 }
