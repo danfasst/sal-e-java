@@ -5,8 +5,6 @@ import Pedidos.Pedido;
 
 public class Sistema {
 
-    private static Scanner scanner = new Scanner(System.in);
-
     public static void main(String[] args) {
         exibirMenuPrincipal();
         int opcao = lerOpcao();
