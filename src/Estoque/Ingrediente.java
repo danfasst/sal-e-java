@@ -1,4 +1,5 @@
 package Estoque;
+import Entidade.Entidade;
 
 public class Ingrediente extends Entidade {
     protected int quantidade;
@@ -14,5 +15,11 @@ public class Ingrediente extends Entidade {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
+    }
+
+    @Override
+    public String mostrarDados() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'mostrarDados'");
     }
 }

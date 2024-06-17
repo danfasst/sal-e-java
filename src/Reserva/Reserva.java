@@ -1,3 +1,7 @@
+package Reserva;
+
+import Entidade.Entidade;
+
 public class Reserva extends Entidade {
 
     private int quantidadePessoas;

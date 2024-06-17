@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+import Pedidos.GerenciadorPedidos;
 import Pedidos.Pedido;
 
 public class Sistema {
@@ -82,7 +83,7 @@ public class Sistema {
         String descricao = scanner.nextLine();
 
         Pedido novoPedido = new Pedido(cliente, descricao);
-        gerenciadorPedidos.adicionarPedido(novoPedido);
+        GerenciadorPedidos.adicionarPedido(novoPedido);
         System.out.println("Pedido adicionado com sucesso.");
     }
 
@@ -114,18 +115,18 @@ public class Sistema {
 
     private static void mostrarPedidosEmAberto() {
         System.out.println("\n-- Mostrar Pedidos Em Aberto --");
-        gerenciadorPedidos.mostrarPedidosEmAberto();
+        GerenciadorPedidos.mostrarPedidosEmAberto();
     }
 
     private static void editarPedido() {
         System.out.println("\n-- Editar Pedido Pelo Id --");
         int idPedido = lerOpcao("Digite o ID do pedido a ser editado:");
-        Pedido pedido = gerenciadorPedidos.buscarPedido(idPedido);
+        Pedido pedido = GerenciadorPedidos.buscarPedido(idPedido);
         if (pedido != null) {
             System.out.print("Digite a nova descrição do pedido: ");
             String descricao = scanner.nextLine();
             pedido.setDescricao(descricao);
-            gerenciadorPedidos.editarPedido(idPedido, pedido);
+            GerenciadorPedidos.editarPedido(idPedido, pedido);
             System.out.println("Pedido editado com sucesso.");
         } else {
             System.out.println("Pedido não encontrado.");
@@ -135,9 +136,9 @@ public class Sistema {
     private static void marcarPedidoConcluido() {
         System.out.println("\n-- Marcar Pedido como Concluído pelo Id --");
         int idPedido = lerOpcao("Digite o ID do pedido a ser marcado como concluído:");
-        Pedido pedido = gerenciadorPedidos.buscarPedido(idPedido);
+        Pedido pedido = GerenciadorPedidos.buscarPedido(idPedido);
         if (pedido != null) {
-            gerenciadorPedidos.marcarPedidoConcluido(idPedido);
+            GerenciadorPedidos.marcarPedidoConcluido(idPedido);
             System.out.println("Pedido marcado como concluído com sucesso.");
         } else {
             System.out.println("Pedido não encontrado.");
@@ -146,7 +147,7 @@ public class Sistema {
 
     private static void mostrarPedidosConcluidos() {
         System.out.println("\n-- Mostrar Pedidos Concluídos --");
-        gerenciadorPedidos.mostrarPedidosConcluidos();
+        GerenciadorPedidos.mostrarPedidosConcluidos();
     }
 
     private static void mostrarPratos() {

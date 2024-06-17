@@ -15,15 +15,15 @@ public class Estoque {
 
     public void mostrarIngredientes() {
         for (Ingrediente ingrediente : ingredientes) {
-            System.out.println("ID: " + ingrediente.id + ", Nome: " + ingrediente.nome + ", Quantidade: " + ingrediente.quantidade);
+            System.out.println("ID: " + ingrediente.getId() + ", Nome: " + ingrediente.getNome() + ", Quantidade: " + ingrediente.quantidade);
         }
     }
 
     public void adicionarQuantidade(int ingredienteID, int quantidade) {
         for (Ingrediente ingrediente : ingredientes) {
-            if (ingrediente.id == ingredienteID) {
+            if (ingrediente.getId() == ingredienteID) {
                 ingrediente.setQuantidade(ingrediente.quantidade + quantidade);
-                System.out.println("Quantidade de " + ingrediente.nome + " atualizada para " + ingrediente.quantidade);
+                System.out.println("Quantidade de " + ingrediente.getNome() + " atualizada para " + ingrediente.quantidade);
                 return;
             }
         }

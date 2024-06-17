@@ -3,7 +3,7 @@ package Pedidos;
 import java.util.ArrayList;
 
 public class listaConcluidos extends GerenciadorPedidos {
-    
+
     private static ArrayList<Pedido> listaConcluidos = new ArrayList<>();
 
     @Override
@@ -21,10 +21,10 @@ public class listaConcluidos extends GerenciadorPedidos {
 
     @Override
     public void adicionarPedido(Pedido pedido) throws Exception {
-        
-        if(pedido == null) { throw new Exception(""); }
-    }
 
-    
+        if (pedido == null) {
+            throw new Exception("");
+        }
+    }
 
 }
