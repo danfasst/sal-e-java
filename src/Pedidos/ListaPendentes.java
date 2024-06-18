@@ -4,8 +4,12 @@ import java.util.ArrayList;
 public class ListaPendentes extends GerenciadorPedidos {
     
 
-    private void criarLista() {
+    public ListaPendentes() {
+        Pedido novoPedido = new Pedido();
     }
+
+
+
 
     @Override
     public void exibirDados() {

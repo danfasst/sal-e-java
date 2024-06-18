@@ -1,3 +1,5 @@
+import Pedidos.GerenciadorPedidos;
+import Pedidos.ListaPendentes;
 import Pedidos.Pedido;
 import Reserva.Reserva;
 
@@ -79,7 +81,7 @@ public class Sistema {
         String descricao = scanner.nextLine();
 
         Pedido novoPedido = new Pedido(cliente, descricao);
-        gerenciadorPedidos.adicionarPedido(novoPedido);
+        GerenciadorPedidos.adicionarPedido(novoPedido);
         System.out.println("Pedido adicionado com sucesso.");
     }
 
@@ -109,24 +111,30 @@ public class Sistema {
         }
     }
 
-    private static void fazerPedido() {
+    private static void fazerPedido() throws Exception {
         System.out.println("\n-- Fazer Pedido --");
-        String cliente = Console.lerString("Digite o nome do cliente:");
-        String descricao = Console.lerString("Digite a descrição do pedido:");
-    
-        Pedido novoPedido = new Pedido(cliente, descricao);
-        gerenciadorPedidos.adicionarPedido(novoPedido);
+        Prato prato = Console.lerString("Digite o nome do prato:");
+        Pedido novoPedido = new Pedido();
+        novoPedido.adicionarPrato(prato);
+
+
+        try {
+            ListaPendentes.adicionarPedido(novoPedido);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         System.out.println("Pedido adicionado com sucesso.");
     }
     
     private static void editarPedido() {
         System.out.println("\n-- Editar Pedido Pelo Id --");
         int idPedido = Console.lerInt("Digite o ID do pedido a ser editado:");
-        Pedido pedido = gerenciadorPedidos.buscarPedido(idPedido);
+        Pedido pedido = GerenciadorPedidos.buscarPedido(idPedido);
         if (pedido != null) {
             String descricao = Console.lerString("Digite a nova descrição do pedido:");
             pedido.setDescricao(descricao);
-            gerenciadorPedidos.editarPedido(idPedido, pedido);
+            GerenciadorPedidos.editarPedido(idPedido, pedido);
             System.out.println("Pedido editado com sucesso.");
         } else {
             System.out.println("Pedido não encontrado.");
@@ -136,9 +144,9 @@ public class Sistema {
     private static void marcarPedidoConcluido() {
         System.out.println("\n-- Marcar Pedido como Concluído pelo Id --");
         int idPedido = Console.lerInt("Digite o ID do pedido a ser marcado como concluído:");
-        Pedido pedido = gerenciadorPedidos.buscarPedido(idPedido);
+        Pedido pedido = GerenciadorPedidos.buscarPedido(idPedido);
         if (pedido != null) {
-            gerenciadorPedidos.marcarPedidoConcluido(idPedido);
+            GerenciadorPedidos.marcarPedidoConcluido(idPedido);
             System.out.println("Pedido marcado como concluído com sucesso.");
         } else {
             System.out.println("Pedido não encontrado.");
