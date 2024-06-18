@@ -1,5 +1,4 @@
 package Pedidos;
-
 import java.util.ArrayList;
 import Pratos.Prato;
 
@@ -13,7 +12,8 @@ public class Pedido {
 
     public void adicionarPrato(Prato prato) throws Exception {
         
-        if (prato == null) { throw new Exception("\nNão tem prato!"); }
+        if (prato == null)  
+            throw new Exception("\nNão tem prato!");
 
         listaPedido.add(prato);
 
