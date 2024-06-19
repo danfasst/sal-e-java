@@ -5,7 +5,6 @@ public abstract class Entidade {
     protected String nome;
 
     public Entidade() {
-        // Construtor vazio
     }
 
     public Entidade(int id, String nome) {
