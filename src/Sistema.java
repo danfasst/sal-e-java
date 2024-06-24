@@ -6,6 +6,7 @@ import Estoque.GerenciadorEstoque;
 import Estoque.Ingrediente;
 import Pedidos.Pedido;
 import Reserva.Reserva;
+import Autenticacao;
 
 public class Sistema {
 
