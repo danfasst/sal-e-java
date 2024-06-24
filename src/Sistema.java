@@ -2,9 +2,6 @@ import Pedidos.GerenciadorPedidos;
 import Pratos.GerenciadorPratos;
 import Pratos.Prato;
 import Reserva.GerenciadorReservas;
-
-import java.io.IOException;
-
 import Estoque.EscritaEstoque;
 import Estoque.GerenciadorEstoque;
 import Estoque.Ingrediente;
