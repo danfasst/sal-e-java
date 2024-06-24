@@ -4,7 +4,7 @@ Projeto de gerenciamento de um restaurante em linguagem Java, mostrando o estoqu
 ### CLASSES E FUNCIONALIDADES
 Pasta Entidade - Temos a Interface Dados para a utilização do método ExibirDados provenientes da classe abstrata Entidade;
 
-Pasta Estoque - Possui a classe abstrata GerenciadorEstoque para a manutenção da lista de Ingredientes e classe Ingrediente;
+Pasta Estoque - Possui a classe abstrata EscritaEstoque para a gravação de dados em arquivo de texto. Possui também a classe abstrata GerenciadorEstoque para a manutenção da lista de Ingredientes e classe Ingrediente;
 
 Pasta Pedidos - Possui a classe abstrata GerenciadorPedidos permitindo o funcionamento dos pedidos pendentes e concluídos, juntamente com a classe Pedido;
 
