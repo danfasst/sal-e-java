@@ -29,4 +29,7 @@ public abstract class GerenciadorEstoque {
         System.out.println("Ingrediente com ID " + ingredienteID + " não encontrado.");
     }
 
+    public static ArrayList<Ingrediente> getListaEstoque() {
+        return ingredientes;
+    }
 }

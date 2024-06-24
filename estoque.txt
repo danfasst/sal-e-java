@@ -1,0 +1,4 @@
+Ingrediente id=1, nome=Carne, quantidade=29
+Ingrediente id=2, nome=Bebida, quantidade=40
+Ingrediente id=3, nome=Verdura, quantidade=10
+Ingrediente id=4, nome=Tempero, quantidade=30
