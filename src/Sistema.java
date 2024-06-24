@@ -6,7 +6,6 @@ import Estoque.GerenciadorEstoque;
 import Estoque.Ingrediente;
 import Pedidos.Pedido;
 import Reserva.Reserva;
-import Autenticacao;
 
 public class Sistema {
 
@@ -182,18 +181,19 @@ public class Sistema {
     }
 
     private static void menuEstoque() {
+
         if (!autenticarAdministrador()) {
-            System.out.println("Acesso negado. Você não tem permissão para acessar o estoque.");
+            System.out.println("\nUsuario ou senha incorreto!");
             return;
         }
-    
+
         System.out.println("\nMenu de Estoque");
         System.out.println("1) Mostrar todos ingredientes e quantidades");
         System.out.println("2) Adicionar ingredientes");
         System.out.println("0) Voltar");
-    
+
         int opcao = Console.lerInt("Escolha uma opção:");
-    
+
         switch (opcao) {
             case 1:
                 mostrarIngredientes();
@@ -207,7 +207,6 @@ public class Sistema {
                 System.out.println("Opção inválida. Tente novamente.");
         }
     }
-    
 
     private static void mostrarIngredientes() {
 
