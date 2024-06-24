@@ -174,15 +174,25 @@ public class Sistema {
         }
     }
 
-    private static void menuEstoque() {
+    private static boolean autenticarAdministrador() {
+        String username = Console.lerString("Digite o nome de usuário:");
+        String password = Console.lerString("Digite a senha:");
+        return Autenticacao.autenticar(username, password);
+    }
 
-        System.out.println("\n-- Menu de Estoque --");
+    private static void menuEstoque() {
+        if (!autenticarAdministrador()) {
+            System.out.println("Acesso negado. Você não tem permissão para acessar o estoque.");
+            return;
+        }
+    
+        System.out.println("\nMenu de Estoque");
         System.out.println("1) Mostrar todos ingredientes e quantidades");
         System.out.println("2) Adicionar ingredientes");
         System.out.println("0) Voltar");
-
-        int opcao = lerOpcao();
-
+    
+        int opcao = Console.lerInt("Escolha uma opção:");
+    
         switch (opcao) {
             case 1:
                 mostrarIngredientes();
@@ -196,6 +206,7 @@ public class Sistema {
                 System.out.println("Opção inválida. Tente novamente.");
         }
     }
+    
 
     private static void mostrarIngredientes() {
 
