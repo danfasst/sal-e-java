@@ -2,5 +2,5 @@ package Entidade;
 
 public interface Dados {
 
-    public String mostrarDados();
+    public void mostrarDados();
 }

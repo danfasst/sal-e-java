@@ -1,54 +1,62 @@
 package Reserva;
+
 import java.util.ArrayList;
 
 public abstract class GerenciadorReservas {
-    
-    private ArrayList<Reserva> reservas = new ArrayList<>();
 
-    public void adicionarReserva(Reserva reserva) {
+    private static ArrayList<Reserva> reservas = new ArrayList<>();
+
+    public static void adicionarReserva(Reserva reserva) {
         reservas.add(reserva);
         System.out.println("Reserva adicionada com sucesso.");
     }
 
-    public Reserva buscarReserva(int id) {
+    public static Reserva buscarReserva(int id) throws Exception {
         for (Reserva reserva : reservas) {
             if (reserva.getId() == id) {
                 return reserva;
             }
         }
-        return null;
+
+        throw new Exception("\nReserva não encontrada!");
     }
 
-    public void removerReserva(int id) {
+    public static void removerReserva(int id) throws Exception {
+
         Reserva reservaARemover = buscarReserva(id);
         if (reservaARemover != null) {
             reservas.remove(reservaARemover);
             System.out.println("Reserva removida com sucesso.");
-        } else {
-            System.out.println("Reserva não encontrada.");
         }
+
+        throw new Exception("\nReserva não encontrada.");
+
     }
 
-    public void mostrarReservas() {
+    public static void mostrarReservas() throws Exception {
         if (reservas.isEmpty()) {
-            System.out.println("Nenhuma reserva encontrada.");
-        } else {
-            for (Reserva reserva : reservas) {
-                reserva.mostrarDados();
-            }
+            throw new Exception("Nenhuma reserva encontrada.");
         }
+
+        for (Reserva reserva : reservas) {
+            reserva.mostrarDados();
+        }
+
     }
 
-    public void editarReserva(int id, Reserva novaReserva) {
-        for (int i = 0; i < reservas.size(); i++) {
-            if (reservas.get(i).getId() == id) {
-                reservas.set(i, novaReserva);
-                System.out.println("Reserva editada com sucesso.");
+    public static void editarReserva(int id, Reserva novaReserva) throws Exception {
+
+        for (Reserva reserva : reservas) {
+
+            if (reserva.getId() == id) {
+                reserva.setNome(novaReserva.getNome());
+                reserva.setNumeroMesa(novaReserva.getNumeroMesa());
+                reserva.setDataReserva(novaReserva.getDataReserva());
+                reserva.setQuantidadePessoas(novaReserva.getQuantidadePessoas());
                 return;
             }
         }
-        System.out.println("Reserva não encontrada.");
+        throw new Exception("\nReserva não encontrada.");
     }
 
-    
 }

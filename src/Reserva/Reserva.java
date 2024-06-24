@@ -40,7 +40,7 @@ public class Reserva extends Entidade {
     }
 
     @Override
-    public String mostrarDados() {
-        return "id: " + id + ", nome: " + nome + ", Quantidade de Pessoas: " + quantidadePessoas + ", Data da Reserva: " + dataReserva + ", Número da Mesa: " + numeroMesa;
+    public void mostrarDados() {
+        System.out.println("\nId: " + id + "\nNome: " + nome + "\nQuantidade de Pessoas: " + quantidadePessoas + "\nData da Reserva: " + dataReserva + "\nNúmero da Mesa: " + numeroMesa);
     }
 }

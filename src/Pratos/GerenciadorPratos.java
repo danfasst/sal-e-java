@@ -1,58 +1,57 @@
 package Pratos;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class GerenciadorPratos {
-    private List<Prato> pratos;
-    private int proximoId;
+    private static ArrayList<Prato> pratos;
 
     public GerenciadorPratos() {
-        this.pratos = new ArrayList<>();
-        this.proximoId = 1;
+        pratos = new ArrayList<>();
     }
 
-    public void adicionarPrato(String nome, String descricao) {
-        Prato novoPrato = new Prato(proximoId, nome, descricao);
-        pratos.add(novoPrato);
-        proximoId++;
+    public static void adicionarPrato(Prato prato) {
+        pratos.add(prato);
     }
 
-    public Prato buscarPrato(int id) {
+    public static Prato buscarPrato(int id) throws Exception {
+
         for (Prato prato : pratos) {
             if (prato.getId() == id) {
                 return prato;
             }
         }
-        return null;
+
+        throw new Exception("\nPrato não encontrado!");
     }
 
-    public void editarPrato(int id, String novoNome, String novaDescricao) {
+    public static void editarPrato(int id, String novoNome, String novaDescricao) throws Exception {
+
         Prato prato = buscarPrato(id);
+
         if (prato != null) {
             prato.setNome(novoNome);
             prato.setDescricao(novaDescricao);
-        } else {
-            System.out.println("Prato não encontrado.");
         }
+
+        throw new Exception("\nPrato não encontrado!");
     }
 
-    public void removerPrato(int id) {
+    public static void removerPrato(int id) throws Exception {
         Prato prato = buscarPrato(id);
         if (prato != null) {
             pratos.remove(prato);
-        } else {
-            System.out.println("Prato não encontrado.");
         }
+
+        throw new Exception("\nPrato não encontrado!");
     }
 
-    public void mostrarPratos() {
+    public static void mostrarPratos() throws Exception {
         if (pratos.isEmpty()) {
-            System.out.println("Nenhum prato cadastrado.");
-        } else {
-            for (Prato prato : pratos) {
-                System.out.println(prato);
-            }
+            throw new Exception("\nLista de pratos vazia!");
+        }
+        
+        for (Prato prato : pratos) {
+            System.out.println(prato);
         }
     }
 }

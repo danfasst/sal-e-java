@@ -4,12 +4,12 @@ import Pratos.Prato;
 
 public class Pedido {
     
-    private int id;
+    private int id = 1;
     private ArrayList<Prato> pratos;
 
-    public Pedido(int id) {
-        this.id = id;
+    public Pedido() {
         this.pratos = new ArrayList<>();
+        id++;
     }
 
     public int getId() {
@@ -24,8 +24,8 @@ public class Pedido {
         return pratos;
     }
 
-    public void setPratos(ArrayList<Prato> pratos) {
-        this.pratos = pratos;
+    public void setPratos(Prato prato) {
+        pratos.add(prato);
     }
 
     public String mostrarDados() {
