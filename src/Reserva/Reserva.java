@@ -1,5 +1,4 @@
 package Reserva;
-
 import Entidade.Entidade;
 
 public class Reserva extends Entidade {

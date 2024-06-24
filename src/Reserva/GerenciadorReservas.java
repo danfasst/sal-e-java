@@ -2,11 +2,21 @@ package Reserva;
 import java.util.ArrayList;
 
 public abstract class GerenciadorReservas {
-    protected ArrayList<Reserva> reservas = new ArrayList<>();
+    
+    private ArrayList<Reserva> reservas = new ArrayList<>();
 
     public void adicionarReserva(Reserva reserva) {
         reservas.add(reserva);
         System.out.println("Reserva adicionada com sucesso.");
+    }
+
+    public Reserva buscarReserva(int id) {
+        for (Reserva reserva : reservas) {
+            if (reserva.getId() == id) {
+                return reserva;
+            }
+        }
+        return null;
     }
 
     public void removerReserva(int id) {
@@ -40,12 +50,5 @@ public abstract class GerenciadorReservas {
         System.out.println("Reserva não encontrada.");
     }
 
-    public Reserva buscarReserva(int id) {
-        for (Reserva reserva : reservas) {
-            if (reserva.getId() == id) {
-                return reserva;
-            }
-        }
-        return null;
-    }
+    
 }
