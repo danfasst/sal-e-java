@@ -1,27 +1,40 @@
 package Pedidos;
-
 import java.util.ArrayList;
 import Pratos.Prato;
 
 public class Pedido {
+    
+    private int id;
+    private ArrayList<Prato> pratos;
 
-    private ArrayList<Prato> listaPedido;
-
-    public Pedido() {
-        listaPedido = new ArrayList<Prato>();
+    public Pedido(int id) {
+        this.id = id;
+        this.pratos = new ArrayList<>();
     }
 
-    public void adicionarPrato(Prato prato) throws Exception {
-        
-        if (prato == null) { throw new Exception("\nNão tem prato!"); }
-
-        listaPedido.add(prato);
-
-        System.out.println("\nUm novo prato foi adicionado no seu pedido!");
+    public int getId() {
+        return id;
     }
 
-    public ArrayList<Prato> getPedido() {
-        return listaPedido;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public ArrayList<Prato> getPratos() {
+        return pratos;
+    }
+
+    public void setPratos(ArrayList<Prato> pratos) {
+        this.pratos = pratos;
+    }
+
+    public String mostrarDados() {
+        return "\nId " + id + "\nPratos:\n" + pratos;
+    }
+
+    @Override
+    public String toString() {
+        return "Pedido [id=" + id + ", pratos=" + pratos + "]";
     }
 
 }
