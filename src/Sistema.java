@@ -2,6 +2,10 @@ import Pedidos.GerenciadorPedidos;
 import Pratos.GerenciadorPratos;
 import Pratos.Prato;
 import Reserva.GerenciadorReservas;
+
+import java.io.IOException;
+
+import Estoque.EscritaEstoque;
 import Estoque.GerenciadorEstoque;
 import Estoque.Ingrediente;
 import Pedidos.Pedido;
@@ -188,22 +192,28 @@ public class Sistema {
         return Autenticacao.autenticar(username, password);
     }
 
-    private static void InicializarIngredientes() {
-        Ingrediente tomate = new Ingrediente(1, "Tomate", 20);
-        GerenciadorEstoque.adicionarIngrediente(tomate);
-        Ingrediente arroz = new Ingrediente(2, "Arroz", 8);
-        GerenciadorEstoque.adicionarIngrediente(arroz);
-        Ingrediente carne = new Ingrediente(3, "Carne", 29);
-        GerenciadorEstoque.adicionarIngrediente(carne);
-        Ingrediente bebida = new Ingrediente(4, "Bebida", 40);
-        GerenciadorEstoque.adicionarIngrediente(bebida);
-    }
-
     private static void menuEstoque() {
 
         if (!autenticarAdministrador()) {
             System.out.println("\nUsuario ou senha incorreto!");
             return;
+        }
+
+        if (GerenciadorEstoque.getListaEstoque().isEmpty()) {
+            Ingrediente carne = new Ingrediente(1, "Carne", 29);
+            GerenciadorEstoque.adicionarIngrediente(carne);
+            Ingrediente bebida = new Ingrediente(2, "Bebida", 40);
+            GerenciadorEstoque.adicionarIngrediente(bebida);
+            Ingrediente verdura = new Ingrediente(3, "Verdura", 10);
+            GerenciadorEstoque.adicionarIngrediente(verdura);
+            Ingrediente tempero = new Ingrediente(4, "Tempero", 30);
+            GerenciadorEstoque.adicionarIngrediente(tempero);
+
+            try {
+                EscritaEstoque.salvarEstoque();
+            } catch (Exception exception) {
+                System.out.println(exception.getMessage());
+            }
         }
 
         System.out.println("\nMenu de Estoque");
@@ -212,8 +222,6 @@ public class Sistema {
         System.out.println("0) Voltar");
 
         int opcao = lerOpcao();
-
-        InicializarIngredientes();
 
         switch (opcao) {
             case 1:
@@ -242,6 +250,13 @@ public class Sistema {
         int id = Console.lerInt("\nDigite o id do ingrediente:");
         int quantidade = Console.lerInt("Digite a quantidade a ser adicionada:");
         GerenciadorEstoque.adicionarQuantidade(id, quantidade);
+
+        try {
+            EscritaEstoque.salvarEstoque();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     private static void menuReservas() {
