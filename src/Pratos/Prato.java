@@ -1,12 +1,14 @@
 package Pratos;
 
-public class Prato {
-    private int id = 1;
-    private String nome;
+import Entidade.Entidade;
+
+public class Prato extends Entidade{
+
     private String descricao;
 
     public Prato(String nome, String descricao) {
-        this.nome = nome;
+        super(id, nome);
+        id = 1;
         this.descricao = descricao;
         id++;
     }
@@ -32,11 +34,8 @@ public class Prato {
     }
 
     @Override
-    public String toString() {
-        return "Prato{" +
-                "  id=" + id +
-                ", nome='" + nome + '\'' +
-                ", descricao='" + descricao + '\'' +
-                '}';
+    public void mostrarDados() {
+        System.out.println("\nID" + id + "\nNome: " + nome + "\nDescricao: " + descricao);
     }
+
 }

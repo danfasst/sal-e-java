@@ -7,6 +7,10 @@ public abstract class Entidade implements Dados {
     public Entidade() {
     }
 
+    public Entidade(String nome) {
+        this.id = 1;
+    }
+
     public Entidade(int id, String nome) {
         this.id = id;
         this.nome = nome;
