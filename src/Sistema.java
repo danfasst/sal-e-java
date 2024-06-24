@@ -13,6 +13,10 @@ public class Sistema {
         return Console.lerInt("Escolha uma opção:");
     }
 
+    private static void tenteNovamente() {
+        System.out.println("Opção inválida. Tente novamente.");
+    }
+
     public static void executar() {
 
         exibirMenuPrincipal();
@@ -36,7 +40,7 @@ public class Sistema {
                     System.out.println("Saindo do sistema. Até logo!");
                     break;
                 default:
-                    System.out.println("Opção inválida. Tente novamente.");
+                    tenteNovamente();
             }
             exibirMenuPrincipal();
             opcao = lerOpcao();
@@ -75,7 +79,7 @@ public class Sistema {
             case 0:
                 return;
             default:
-                System.out.println("Opção inválida. Tente novamente.");
+                tenteNovamente();
         }
     }
 
@@ -87,13 +91,13 @@ public class Sistema {
         System.out.println("2) Concluir pedido");
         int op = lerOpcao();
         int id = 1;
-        
+
         while (op == 1) {
-            
+
             String nomePrato = Console.lerString("\nDigite o nome do prato para seu pedido:");
             String descricao = Console.lerString("Qual a descrição desse prato:");
             Prato prato = new Prato(id, nomePrato, descricao);
-            
+
             GerenciadorPratos.adicionarPrato(prato);
 
             Pedido pedido = new Pedido();
@@ -106,11 +110,10 @@ public class Sistema {
 
             System.out.println("\n1) Adionar Prato");
             System.out.println("2) Concluir pedido");
-            op = Console.lerInt("Digite sua opção:");
+            op = lerOpcao();
 
         }
 
-        
         System.out.println("\nPedido concluído!");
     }
 
@@ -133,7 +136,7 @@ public class Sistema {
             case 0:
                 return;
             default:
-                System.out.println("Opção inválida. Tente novamente.");
+                tenteNovamente();
         }
     }
 
@@ -204,14 +207,14 @@ public class Sistema {
             return;
         }
 
-        InicializarIngredientes();
-
         System.out.println("\nMenu de Estoque");
         System.out.println("1) Mostrar todos ingredientes e quantidades");
         System.out.println("2) Adicionar ingredientes");
         System.out.println("0) Voltar");
 
-        int opcao = Console.lerInt("Escolha uma opção:");
+        int opcao = lerOpcao();
+
+        InicializarIngredientes();
 
         switch (opcao) {
             case 1:
@@ -223,7 +226,7 @@ public class Sistema {
             case 0:
                 return;
             default:
-                System.out.println("Opção inválida. Tente novamente.");
+                tenteNovamente();
         }
     }
 
@@ -268,7 +271,7 @@ public class Sistema {
             case 0:
                 return;
             default:
-                System.out.println("Opção inválida. Tente novamente.");
+                tenteNovamente();
         }
     }
 
