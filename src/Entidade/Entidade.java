@@ -1,6 +1,6 @@
 package Entidade;
 
-public abstract class Entidade {
+public abstract class Entidade implements Dados {
     protected int id;
     protected String nome;
 
@@ -33,6 +33,4 @@ public abstract class Entidade {
         return "Entidade [id=" + id + ", nome=" + nome + "]";
     }
 
-    // Método abstrato a ser implementado pelas subclasses
-    public abstract String mostrarDados();
 }
