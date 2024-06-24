@@ -41,6 +41,6 @@ public class Reserva extends Entidade {
 
     @Override
     public void mostrarDados() {
-        System.out.println("\nId: " + id + "\nNome: " + nome + "\nQuantidade de Pessoas: " + quantidadePessoas + "\nData da Reserva: " + dataReserva + "\nNúmero da Mesa: " + numeroMesa);
+        System.out.println("\nID: " + id + "\nNome: " + nome + "\nQuantidade de Pessoas: " + quantidadePessoas + "\nData da Reserva: " + dataReserva + "\nNúmero da Mesa: " + numeroMesa);
     }
 }

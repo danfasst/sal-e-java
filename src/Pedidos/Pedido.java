@@ -29,7 +29,7 @@ public class Pedido {
     }
 
     public String mostrarDados() {
-        return "\nId " + id + "\nPratos:\n" + pratos;
+        return "\nID: " + id + "\nPratos: " + pratos;
     }
 
 }

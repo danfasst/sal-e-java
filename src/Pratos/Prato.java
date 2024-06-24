@@ -33,7 +33,7 @@ public class Prato extends Entidade{
 
     @Override
     public void mostrarDados() {
-        System.out.println("\nID" + id + "\nNome: " + nome + "\nDescricao: " + descricao);
+        System.out.println("\nID: " + id + "\nNome: " + nome + "\nDescricao: " + descricao);
     }
 
 }

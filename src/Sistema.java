@@ -36,9 +36,7 @@ public class Sistema {
                 case 4:
                     menuReservas();
                     break;
-                case 0:
-                    System.out.println("Saindo do sistema. Até logo!");
-                    break;
+
                 default:
                     tenteNovamente();
             }
@@ -46,6 +44,7 @@ public class Sistema {
             opcao = lerOpcao();
         }
 
+        System.out.println("\nPrograma finalizado!");
     }
 
     private static void exibirMenuPrincipal() {
