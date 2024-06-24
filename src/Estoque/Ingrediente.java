@@ -18,8 +18,7 @@ public class Ingrediente extends Entidade {
     }
 
     @Override
-    public String mostrarDados() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mostrarDados'");
+    public void mostrarDados() {
+        System.out.println("\nID " + id + "\nNome: " + nome + "\nQuantidade: " + quantidade);
     }
 }

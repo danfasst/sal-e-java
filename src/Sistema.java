@@ -1,263 +1,343 @@
-
+import Pedidos.GerenciadorPedidos;
+import Pratos.GerenciadorPratos;
+import Pratos.Prato;
+import Reserva.GerenciadorReservas;
+import Estoque.GerenciadorEstoque;
+import Estoque.Ingrediente;
+import Pedidos.Pedido;
+import Reserva.Reserva;
 
 public class Sistema {
 
-    public static void main(String[] args) {
-        // vaiPraMain();
+    private static int lerOpcao() {
+        return Console.lerInt("Escolha uma opção:");
     }
 
-    // private static void vaiPraMain() {
-    //     exibirMenuPrincipal();
-    //     int opcao = Console.lerInt("Escolha uma opção:");
+    private static void tenteNovamente() {
+        System.out.println("Opção inválida. Tente novamente.");
+    }
 
-    //     while (opcao != 0) {
-    //         switch (opcao) {
-    //             case 1:
-    //                 menuPedidos();
-    //                 break;
-    //             case 2:
-    //                 mostrarPratos();
-    //                 break;
-    //             case 3:
-    //                 menuEstoque();
-    //                 break;
-    //             case 4:
-    //                 menuReservas();
-    //                 break;
-    //             default:
-    //                 System.out.println("Opção inválida. Tente novamente.");
-    //         }
-    //         exibirMenuPrincipal();
-    //         opcao = Console.lerInt("Escolha uma opção:");
-    //     }
+    public static void executar() {
 
-    //     System.out.println("Saindo do sistema. Até logo!");
-    // }
+        exibirMenuPrincipal();
+        int opcao = lerOpcao();
 
-    // private static void exibirMenuPrincipal() {
-    // System.out.println("\nSal & Java\n");
-    // System.out.println("1) Pedidos");
-    // System.out.println("2) Pratos");
-    // System.out.println("3) Estoque");
-    // System.out.println("4) Reservas");
-    // System.out.println("0) Sair");
-    // }
+        while (opcao != 0) {
+            switch (opcao) {
+                case 1:
+                    menuPedidos();
+                    break;
+                case 2:
+                    mostrarPratos();
+                    break;
+                case 3:
+                    menuEstoque();
+                    break;
+                case 4:
+                    menuReservas();
+                    break;
 
-    // private static int lerOpcao() {
-    // return Console.lerInt("Escolha uma opção:");
-    // }
+                default:
+                    tenteNovamente();
+            }
+            exibirMenuPrincipal();
+            opcao = lerOpcao();
+        }
 
-    // private static void menuPedidos() {
-    // System.out.println("\nMenu de Pedidos");
-    // System.out.println("1) Fazer Pedido");
-    // System.out.println("2) Pedidos Pendentes");
-    // System.out.println("3) Pedidos Concluídos para Entrega");
-    // System.out.println("0) Voltar");
+        System.out.println("\nPrograma finalizado!");
+    }
 
-    // int opcao = Console.lerInt("Escolha uma opção:");
+    private static void exibirMenuPrincipal() {
+        System.out.println("\n--SAL & JAVA--\n");
+        System.out.println("1) Pedidos");
+        System.out.println("2) Pratos");
+        System.out.println("3) Estoque");
+        System.out.println("4) Reservas");
+        System.out.println("0) Sair");
+    }
 
-    // switch (opcao) {
-    // case 1:
-    // fazerPedido();
-    // break;
-    // case 2:
-    // menuPedidosPendentes();
-    // break;
-    // case 3:
-    // mostrarPedidosConcluidos();
-    // break;
-    // case 0:
-    // return;
-    // default:
-    // System.out.println("Opção inválida. Tente novamente.");
-    // }
-    // }
+    private static void menuPedidos() {
+        System.out.println("\n-- Menu de Pedidos --");
+        System.out.println("1) Fazer Pedido");
+        System.out.println("2) Pedidos Pendentes");
+        System.out.println("3) Mostrar Pedidos Concluídos");
+        System.out.println("0) Voltar");
 
-    // private static void fazerPedido() {
-    // System.out.println("\n-- Fazer Pedido --");
-    // System.out.print("Digite o nome do cliente: ");
-    // String cliente = Console.lerString(null);
-    // System.out.print("Digite a descrição do pedido: ");
-    // String descricao = scanner.nextLine();
+        int opcao = lerOpcao();
 
-    // Pedido novoPedido = new Pedido(cliente, descricao);
-    // GerenciadorPedidos.adicionarPedido(novoPedido);
-    // System.out.println("Pedido adicionado com sucesso.");
-    // }
+        switch (opcao) {
+            case 1:
+                fazerPedido();
+                break;
+            case 2:
+                menuPedidosPendentes();
+                break;
+            case 3:
+                mostrarPedidosConcluidos();
+                break;
+            case 0:
+                return;
+            default:
+                tenteNovamente();
+        }
+    }
 
-    // private static void menuPedidosPendentes() {
-    // System.out.println("\nPedidos Pendentes");
-    // System.out.println("1) Mostrar Pedidos Em Aberto");
-    // System.out.println("2) Editar Pedido Pelo Id");
-    // System.out.println("3) Marcar Pedido como Concluído Pelo Id");
-    // System.out.println("0) Voltar");
+    private static void fazerPedido() {
 
-    // int opcao = lerOpcao();
+        System.out.println("\n-- Fazer Pedido --");
 
-    // switch (opcao) {
-    // case 1:
-    // mostrarPedidosEmAberto();
-    // break;
-    // case 2:
-    // editarPedido();
-    // break;
-    // case 3:
-    // marcarPedidoConcluido();
-    // break;
-    // case 0:
-    // return;
-    // default:
-    // System.out.println("Opção inválida. Tente novamente.");
-    // }
-    // }
+        System.out.println("1) Adionar Prato");
+        System.out.println("2) Concluir pedido");
+        int op = lerOpcao();
+        int id = 1;
 
-    // private static void fazerPedido() throws Exception {
-    // System.out.println("\n-- Fazer Pedido --");
-    // Prato prato = Console.lerString("Digite o nome do prato:");
-    // Pedido novoPedido = new Pedido();
-    // novoPedido.adicionarPrato(prato);
+        while (op == 1) {
 
-    // try {
-    // ListaPendentes.adicionarPedido(novoPedido);
+            String nomePrato = Console.lerString("\nDigite o nome do prato para seu pedido:");
+            String descricao = Console.lerString("Qual a descrição desse prato:");
+            Prato prato = new Prato(id, nomePrato, descricao);
 
-    // } catch (Exception e) {
-    // System.out.println(e.getMessage());
-    // }
-    // System.out.println("Pedido adicionado com sucesso.");
-    // }
+            GerenciadorPratos.adicionarPrato(prato);
 
-    // private static void editarPedido() {
-    // System.out.println("\n-- Editar Pedido Pelo Id --");
-    // int idPedido = Console.lerInt("Digite o ID do pedido a ser editado:");
-    // Pedido pedido = GerenciadorPedidos.buscarPedido(idPedido);
-    // if (pedido != null) {
-    // String descricao = Console.lerString("Digite a nova descrição do pedido:");
-    // pedido.setDescricao(descricao);
-    // GerenciadorPedidos.editarPedido(idPedido, pedido);
-    // System.out.println("Pedido editado com sucesso.");
-    // } else {
-    // System.out.println("Pedido não encontrado.");
-    // }
-    // }
+            Pedido pedido = new Pedido();
+            pedido.setPratos(prato);
 
-    // private static void marcarPedidoConcluido() {
-    // System.out.println("\n-- Marcar Pedido como Concluído pelo Id --");
-    // int idPedido = Console.lerInt("Digite o ID do pedido a ser marcado como
-    // concluído:");
-    // Pedido pedido = GerenciadorPedidos.buscarPedido(idPedido);
-    // if (pedido != null) {
-    // GerenciadorPedidos.marcarPedidoConcluido(idPedido);
-    // System.out.println("Pedido marcado como concluído com sucesso.");
-    // } else {
-    // System.out.println("Pedido não encontrado.");
-    // }
-    // }
+            GerenciadorPedidos.fazerPedido(pedido);
 
-    // private static void menuEstoque() {
-    // System.out.println("\nMenu de Estoque");
-    // System.out.println("1) Mostrar todos ingredientes e quantidades");
-    // System.out.println("2) Adicionar ingredientes");
-    // System.out.println("0) Voltar");
+            System.out.println("\nPrato adicionado com sucesso.");
+            id++;
 
-    // int opcao = Console.lerInt("Escolha uma opção:");
+            System.out.println("\n1) Adionar Prato");
+            System.out.println("2) Concluir pedido");
+            op = lerOpcao();
 
-    // switch (opcao) {
-    // case 1:
-    // mostrarIngredientes();
-    // break;
-    // case 2:
-    // adicionarQuantidadeIngrediente();
-    // break;
-    // case 0:
-    // return;
-    // default:
-    // System.out.println("Opção inválida. Tente novamente.");
-    // }
-    // }
+        }
 
-    // private static void mostrarIngredientes() {
-    // System.out.println("\n-- Mostrar Ingredientes e Quantidades --");
-    // gerenciadorEstoque.mostrarIngredientes();
-    // }
+        System.out.println("\nPedido concluído!");
+    }
 
-    // private static void adicionarQuantidadeIngrediente() {
-    // System.out.println("\n-- Adicionar Quantidade em um Ingrediente --");
-    // String nome = Console.lerString("Digite o nome do ingrediente:");
-    // int quantidade = Console.lerInt("Digite a quantidade a ser adicionada:");
-    // gerenciadorEstoque.adicionarQuantidade(nome, quantidade);
-    // System.out.println("Quantidade adicionada com sucesso.");
-    // }
+    private static void menuPedidosPendentes() {
 
-    // private static void menuReservas() {
-    // System.out.println("\nMenu de Reservas");
-    // System.out.println("1) Mostrar Reservas Feitas");
-    // System.out.println("2) Adicionar Reserva");
-    // System.out.println("3) Excluir Reserva");
-    // System.out.println("4) Editar Reserva");
-    // System.out.println("0) Voltar");
+        System.out.println("\n-- Pedidos Pendentes --");
+        System.out.println("1) Mostrar Pedidos Pendentes");
+        System.out.println("2) Marcar Pedido como Concluído Pelo Id");
+        System.out.println("0) Voltar");
 
-    // int opcao = Console.lerInt("Escolha uma opção:");
+        int opcao = lerOpcao();
 
-    // switch (opcao) {
-    // case 1:
-    // mostrarReservas();
-    // break;
-    // case 2:
-    // adicionarReserva();
-    // break;
-    // case 3:
-    // excluirReserva();
-    // break;
-    // case 4:
-    // editarReserva();
-    // break;
-    // case 0:
-    // return;
-    // default:
-    // System.out.println("Opção inválida. Tente novamente.");
-    // }
-    // }
+        switch (opcao) {
+            case 1:
+                mostrarPedidosPendentes();
+                break;
+            case 2:
+                marcarPedidoComoConcluido();
+                break;
+            case 0:
+                return;
+            default:
+                tenteNovamente();
+        }
+    }
 
-    // private static void mostrarReservas() {
-    // System.out.println("\n-- Mostrar Reservas --");
-    // gerenciadorReservas.mostrarReservas();
-    // }
+    private static void mostrarPedidosPendentes() {
 
-    // private static void adicionarReserva() {
-    // System.out.println("\n-- Adicionar Reserva --");
-    // String cliente = Console.lerString("Digite o nome do cliente:");
-    // String data = Console.lerString("Digite a data da reserva:");
+        System.out.println("\n-- Pedidos Pendentes --");
+        try {
+            GerenciadorPedidos.mostrarPedidosPendentes();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
-    // Reserva novaReserva = new Reserva(cliente, data);
-    // gerenciadorReservas.adicionarReserva(novaReserva);
-    // System.out.println("Reserva adicionada com sucesso.");
-    // }
+    private static void marcarPedidoComoConcluido() {
 
-    // private static void excluirReserva() {
-    // System.out.println("\n-- Excluir Reserva --");
-    // int idReserva = Console.lerInt("Digite o ID da reserva a ser excluída:");
-    // Reserva reserva = gerenciadorReservas.buscarReserva(idReserva);
-    // if (reserva != null) {
-    // gerenciadorReservas.removerReserva(idReserva);
-    // System.out.println("Reserva excluída com sucesso.");
-    // } else {
-    // System.out.println("Reserva não encontrada.");
-    // }
-    // }
+        System.out.println("\n-- Marcar Pedido Pendente como Concluído --");
+        int idPedido = Console.lerInt("Digite o ID do pedido a ser marcado como concluído:");
+        try {
+            GerenciadorPedidos.marcarPedidoComoConcluido(idPedido);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
-    // private static void editarReserva() {
-    // System.out.println("\n-- Editar Reserva --");
-    // int idReserva = Console.lerInt("Digite o ID da reserva a ser editada:");
-    // Reserva reserva = gerenciadorReservas.buscarReserva(idReserva);
-    // if (reserva != null) {
-    // String cliente = Console.lerString("Digite o novo nome do cliente:");
-    // String data = Console.lerString("Digite a nova data da reserva:");
-    // Reserva reservaEditada = new Reserva(cliente, data);
-    // gerenciadorReservas.editarReserva(idReserva, reservaEditada);
-    // System.out.println("Reserva editada com sucesso.");
-    // } else {
-    // System.out.println("Reserva não encontrada.");
-    // }
-    // }
+    }
+
+    private static void mostrarPedidosConcluidos() {
+
+        System.out.println("\n -- Pedidos Concluidos --");
+        try {
+            GerenciadorPedidos.mostrarPedidosConcluidos();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void mostrarPratos() {
+
+        System.out.println("\n-- Lista de Pratos --");
+
+        try {
+            GerenciadorPratos.mostrarPratos();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static boolean autenticarAdministrador() {
+        String username = Console.lerString("Digite o nome de usuário:");
+        String password = Console.lerString("Digite a senha:");
+        return Autenticacao.autenticar(username, password);
+    }
+
+    private static void InicializarIngredientes() {
+        Ingrediente tomate = new Ingrediente(1, "Tomate", 20);
+        GerenciadorEstoque.adicionarIngrediente(tomate);
+        Ingrediente arroz = new Ingrediente(2, "Arroz", 8);
+        GerenciadorEstoque.adicionarIngrediente(arroz);
+        Ingrediente carne = new Ingrediente(3, "Carne", 29);
+        GerenciadorEstoque.adicionarIngrediente(carne);
+        Ingrediente bebida = new Ingrediente(4, "Bebida", 40);
+        GerenciadorEstoque.adicionarIngrediente(bebida);
+    }
+
+    private static void menuEstoque() {
+
+        if (!autenticarAdministrador()) {
+            System.out.println("\nUsuario ou senha incorreto!");
+            return;
+        }
+
+        System.out.println("\nMenu de Estoque");
+        System.out.println("1) Mostrar todos ingredientes e quantidades");
+        System.out.println("2) Adicionar ingredientes");
+        System.out.println("0) Voltar");
+
+        int opcao = lerOpcao();
+
+        InicializarIngredientes();
+
+        switch (opcao) {
+            case 1:
+                mostrarIngredientes();
+                break;
+            case 2:
+                adicionarQuantidadeIngrediente();
+                break;
+            case 0:
+                return;
+            default:
+                tenteNovamente();
+        }
+    }
+
+    private static void mostrarIngredientes() {
+
+        System.out.println("\n-- Ingredientes --\n");
+        GerenciadorEstoque.mostrarDados();
+
+    }
+
+    private static void adicionarQuantidadeIngrediente() {
+        System.out.println("\n-- Adicionar Quantidade em um Ingrediente --");
+        GerenciadorEstoque.mostrarDados();
+        int id = Console.lerInt("\nDigite o id do ingrediente:");
+        int quantidade = Console.lerInt("Digite a quantidade a ser adicionada:");
+        GerenciadorEstoque.adicionarQuantidade(id, quantidade);
+    }
+
+    private static void menuReservas() {
+        System.out.println("\nMenu de Reservas");
+        System.out.println("1) Mostrar Reservas Feitas");
+        System.out.println("2) Adicionar Reserva");
+        System.out.println("3) Excluir Reserva");
+        System.out.println("4) Editar Reserva");
+        System.out.println("0) Voltar");
+
+        int opcao = lerOpcao();
+
+        switch (opcao) {
+            case 1:
+                mostrarReservas();
+                break;
+            case 2:
+                adicionarReserva();
+                break;
+            case 3:
+                excluirReserva();
+                break;
+            case 4:
+                editarReserva();
+                break;
+            case 0:
+                return;
+            default:
+                tenteNovamente();
+        }
+    }
+
+    private static void mostrarReservas() {
+
+        System.out.println("\n-- Mostrar Reservas --");
+
+        try {
+            GerenciadorReservas.mostrarReservas();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    private static void adicionarReserva() {
+
+        System.out.println("\n-- Adicionar Reserva --");
+
+        int id = Console.lerInt("Digite o id da reserva:");
+        String nome = Console.lerString("Digite o nome do cliente:");
+        int qtdPessoas = Console.lerInt("Digite a quantidade de pessoas:");
+        String data = Console.lerString("Digite a data da reserva:");
+        int numMesa = Console.lerInt("Digite o numero da mesa:");
+
+        Reserva novaReserva = new Reserva(id, nome, qtdPessoas, data, numMesa);
+        GerenciadorReservas.adicionarReserva(novaReserva);
+
+    }
+
+    private static void excluirReserva() {
+
+        System.out.println("\n-- Excluir Reserva --");
+        int idReserva = Console.lerInt("Digite o ID da reserva a ser excluída:");
+
+        try {
+            GerenciadorReservas.removerReserva(idReserva);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    private static void editarReserva() {
+
+        System.out.println("\n-- Editar Reserva --");
+        int id = Console.lerInt("Digite o ID da reserva a ser editada:");
+
+        try {
+            GerenciadorReservas.buscarReserva(id);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return;
+        }
+
+        String nome = Console.lerString("Digite o nome do cliente:");
+        int qtdPessoas = Console.lerInt("Digite a quantidade de pessoas:");
+        String data = Console.lerString("Digite a data da reserva:");
+        int numMesa = Console.lerInt("Digite o numero da mesa:");
+        Reserva reservaEditada = new Reserva(id, nome, qtdPessoas, data, numMesa);
+        try {
+            GerenciadorReservas.editarReserva(id, reservaEditada);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println("\nReserva editada com sucesso.");
+    }
 
 }
