@@ -20,7 +20,7 @@ public abstract class GerenciadorPedidos {
             allPedidos.add(pedido);
         }
         
-        if (allPedidos == null) {
+        if (allPedidos.isEmpty()) {
             throw new Exception("\nNão há nenhum pedido!");
         }
 
@@ -39,7 +39,7 @@ public abstract class GerenciadorPedidos {
  
     public static ArrayList<Pedido> mostrarPedidosConcluidos() throws Exception {
         
-        if (pedidosConcluidos == null) {
+        if (pedidosConcluidos.isEmpty()) {
             throw new Exception("\nPedidos concluídos está vazio!");
         }
         return pedidosConcluidos;
@@ -56,12 +56,15 @@ public abstract class GerenciadorPedidos {
         throw new Exception(StringException());
     }
 
-    public static ArrayList<Pedido> mostrarPedidosPendentes() throws Exception {
+    public static void mostrarPedidosPendentes() throws Exception {
         
-        if (pedidosPendentes == null) {
+        if (pedidosPendentes.isEmpty()) {
             throw new Exception("\nPedidos pendentes está vazio!");
         }
-        return pedidosPendentes;
+
+        for (Pedido pedido : pedidosPendentes) {
+            System.out.println(pedido.mostrarDados());
+        }
     }
 
     public static void marcarPedidoComoConcluido(int id) throws Exception{
@@ -69,6 +72,8 @@ public abstract class GerenciadorPedidos {
             if (pedido.getId() == id) {
                 pedidosPendentes.remove(pedido);
                 pedidosConcluidos.add(pedido);
+
+                System.out.println("\nPedido marcado como concluído!");
                 return;
             }
         }

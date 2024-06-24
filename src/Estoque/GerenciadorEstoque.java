@@ -10,9 +10,7 @@ public abstract class GerenciadorEstoque {
     }
 
     public static void mostrarDados() {
-        if (ingredientes.isEmpty()) {
-            System.out.println("\nLista de Ingredientes está vazia!");
-        }
+        
         for (Ingrediente ingrediente : ingredientes) {
             System.out.println("ID: " + ingrediente.getId() + ", Nome: " + ingrediente.getNome() + ", Quantidade: "
                     + ingrediente.quantidade);
@@ -24,7 +22,7 @@ public abstract class GerenciadorEstoque {
             if (ingrediente.getId() == ingredienteID) {
                 ingrediente.setQuantidade(ingrediente.quantidade + quantidade);
                 System.out.println(
-                        "Quantidade de " + ingrediente.getNome() + " atualizada para " + ingrediente.quantidade);
+                        "\nQuantidade de " + ingrediente.getNome() + " atualizada para " + ingrediente.quantidade);
                 return;
             }
         }

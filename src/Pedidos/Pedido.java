@@ -32,9 +32,4 @@ public class Pedido {
         return "\nId " + id + "\nPratos:\n" + pratos;
     }
 
-    @Override
-    public String toString() {
-        return "Pedido [id=" + id + ", pratos=" + pratos + "]";
-    }
-
 }
