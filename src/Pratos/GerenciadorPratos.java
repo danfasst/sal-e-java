@@ -16,7 +16,7 @@ public abstract class GerenciadorPratos {
         }
         
         for (Prato prato : pratos) {
-            System.out.println(prato);
+            prato.mostrarDados();
         }
     }
 }

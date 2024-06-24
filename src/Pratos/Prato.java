@@ -6,11 +6,9 @@ public class Prato extends Entidade{
 
     private String descricao;
 
-    public Prato(String nome, String descricao) {
+    public Prato(int id, String nome, String descricao) {
         super(id, nome);
-        id = 1;
         this.descricao = descricao;
-        id++;
     }
 
     public int getId() {

@@ -45,7 +45,7 @@ public class Sistema {
     }
 
     private static void exibirMenuPrincipal() {
-        System.out.println("\nSal & Java\n");
+        System.out.println("\n--SAL & JAVA--\n");
         System.out.println("1) Pedidos");
         System.out.println("2) Pratos");
         System.out.println("3) Estoque");
@@ -54,10 +54,10 @@ public class Sistema {
     }
 
     private static void menuPedidos() {
-        System.out.println("\nMenu de Pedidos");
+        System.out.println("\n-- Menu de Pedidos --");
         System.out.println("1) Fazer Pedido");
         System.out.println("2) Pedidos Pendentes");
-        System.out.println("3) Pedidos Concluídos para Entrega");
+        System.out.println("3) Mostrar Pedidos Concluídos");
         System.out.println("0) Voltar");
 
         int opcao = lerOpcao();
@@ -83,15 +83,17 @@ public class Sistema {
 
         System.out.println("\n-- Fazer Pedido --");
 
-        System.out.println("Adionar Prato - 1");
-        System.out.println("Concluir pedido - 2");
+        System.out.println("1) Adionar Prato");
+        System.out.println("2) Concluir pedido");
         int op = lerOpcao();
-
+        int id = 1;
+        
         while (op == 1) {
-            String nomePrato = Console.lerString("Digite o nome do prato para seu pedido:");
+            
+            String nomePrato = Console.lerString("\nDigite o nome do prato para seu pedido:");
             String descricao = Console.lerString("Qual a descrição desse prato:");
-            Prato prato = new Prato(nomePrato, descricao);
-
+            Prato prato = new Prato(id, nomePrato, descricao);
+            
             GerenciadorPratos.adicionarPrato(prato);
 
             Pedido pedido = new Pedido();
@@ -99,12 +101,17 @@ public class Sistema {
 
             GerenciadorPedidos.fazerPedido(pedido);
 
-            System.out.println("Pedido adicionado com sucesso.");
+            System.out.println("\nPrato adicionado com sucesso.");
+            id++;
 
-            System.out.println("Adionar Prato - 1");
-            System.out.println("Concluir pedido - 2");
+            System.out.println("\n1) Adionar Prato");
+            System.out.println("2) Concluir pedido");
             op = Console.lerInt("Digite sua opção:");
+
         }
+
+        
+        System.out.println("\nPedido concluído!");
     }
 
     private static void menuPedidosPendentes() {
@@ -121,7 +128,7 @@ public class Sistema {
                 mostrarPedidosPendentes();
                 break;
             case 2:
-                marcarPedidoConcluido();
+                marcarPedidoComoConcluido();
                 break;
             case 0:
                 return;
@@ -134,13 +141,13 @@ public class Sistema {
 
         System.out.println("\n-- Pedidos Pendentes --");
         try {
-            mostrarPedidosPendentes();
+            GerenciadorPedidos.mostrarPedidosPendentes();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    private static void marcarPedidoConcluido() {
+    private static void marcarPedidoComoConcluido() {
 
         System.out.println("\n-- Marcar Pedido Pendente como Concluído --");
         int idPedido = Console.lerInt("Digite o ID do pedido a ser marcado como concluído:");
@@ -150,7 +157,6 @@ public class Sistema {
             System.out.println(e.getMessage());
         }
 
-        System.out.println("Pedido marcado como concluído com sucesso.");
     }
 
     private static void mostrarPedidosConcluidos() {
@@ -174,14 +180,38 @@ public class Sistema {
         }
     }
 
+    private static boolean autenticarAdministrador() {
+        String username = Console.lerString("Digite o nome de usuário:");
+        String password = Console.lerString("Digite a senha:");
+        return Autenticacao.autenticar(username, password);
+    }
+
+    private static void InicializarIngredientes() {
+        Ingrediente tomate = new Ingrediente(1, "Tomate", 20);
+        GerenciadorEstoque.adicionarIngrediente(tomate);
+        Ingrediente arroz = new Ingrediente(2, "Arroz", 8);
+        GerenciadorEstoque.adicionarIngrediente(arroz);
+        Ingrediente carne = new Ingrediente(3, "Carne", 29);
+        GerenciadorEstoque.adicionarIngrediente(carne);
+        Ingrediente bebida = new Ingrediente(4, "Bebida", 40);
+        GerenciadorEstoque.adicionarIngrediente(bebida);
+    }
+
     private static void menuEstoque() {
 
-        System.out.println("\n-- Menu de Estoque --");
+        if (!autenticarAdministrador()) {
+            System.out.println("\nUsuario ou senha incorreto!");
+            return;
+        }
+
+        InicializarIngredientes();
+
+        System.out.println("\nMenu de Estoque");
         System.out.println("1) Mostrar todos ingredientes e quantidades");
         System.out.println("2) Adicionar ingredientes");
         System.out.println("0) Voltar");
 
-        int opcao = lerOpcao();
+        int opcao = Console.lerInt("Escolha uma opção:");
 
         switch (opcao) {
             case 1:
@@ -199,28 +229,17 @@ public class Sistema {
 
     private static void mostrarIngredientes() {
 
-        Ingrediente tomate = new Ingrediente(1, "Tomate", 20);
-        GerenciadorEstoque.adicionarIngrediente(tomate);
-        Ingrediente arroz = new Ingrediente(2, "Arroz", 8);
-        GerenciadorEstoque.adicionarIngrediente(arroz);
-        Ingrediente carne = new Ingrediente(3, "Carne", 29);
-        GerenciadorEstoque.adicionarIngrediente(carne);
-        Ingrediente bebida = new Ingrediente(4, "Bebida", 40);
-        GerenciadorEstoque.adicionarIngrediente(bebida);
-
-        System.out.println("\n-- Ingredientes --");
+        System.out.println("\n-- Ingredientes --\n");
         GerenciadorEstoque.mostrarDados();
 
     }
 
     private static void adicionarQuantidadeIngrediente() {
         System.out.println("\n-- Adicionar Quantidade em um Ingrediente --");
-        int id = Console.lerInt("Digite o id do ingrediente:");
+        GerenciadorEstoque.mostrarDados();
+        int id = Console.lerInt("\nDigite o id do ingrediente:");
         int quantidade = Console.lerInt("Digite a quantidade a ser adicionada:");
         GerenciadorEstoque.adicionarQuantidade(id, quantidade);
-
-        System.out.println("Quantidade adicionada com sucesso.");
-        GerenciadorEstoque.mostrarDados();
     }
 
     private static void menuReservas() {
@@ -278,7 +297,6 @@ public class Sistema {
         Reserva novaReserva = new Reserva(id, nome, qtdPessoas, data, numMesa);
         GerenciadorReservas.adicionarReserva(novaReserva);
 
-        System.out.println("Reserva adicionada com sucesso.");
     }
 
     private static void excluirReserva() {
@@ -292,14 +310,19 @@ public class Sistema {
             System.out.println(e.getMessage());
         }
 
-        System.out.println("Reserva excluída com sucesso.");
-
     }
 
     private static void editarReserva() {
 
         System.out.println("\n-- Editar Reserva --");
         int id = Console.lerInt("Digite o ID da reserva a ser editada:");
+
+        try {
+            GerenciadorReservas.buscarReserva(id);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return;
+        }
 
         String nome = Console.lerString("Digite o nome do cliente:");
         int qtdPessoas = Console.lerInt("Digite a quantidade de pessoas:");
