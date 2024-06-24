@@ -18,7 +18,7 @@ public class Ingrediente extends Entidade {
     }
 
     @Override
-    public String mostrarDados() {
+    public void mostrarDados() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'mostrarDados'");
     }

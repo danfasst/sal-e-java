@@ -1,14 +1,14 @@
 package Pratos;
 
 public class Prato {
-    private int id;
+    private int id = 1;
     private String nome;
     private String descricao;
 
-    public Prato(int id, String nome, String descricao) {
-        this.id = id;
+    public Prato(String nome, String descricao) {
         this.nome = nome;
         this.descricao = descricao;
+        id++;
     }
 
     public int getId() {
